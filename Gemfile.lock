@@ -342,7 +342,7 @@ DEPENDENCIES
   faker
   figaro
   jbuilder
-  pagy (~> 9.3, >= 9.3.1)
+  pagy
   pry-rails
   puma (>= 5.0)
   rails (~> 7.2.2)

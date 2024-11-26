@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :e_transportations
+      resources :e_transportations do
+        collection do
+          get :outside_power_report
+        end
+      end
     end
   end
 end

@@ -1,9 +1,14 @@
-class Api::V1::ETransportationsController < ApplicationController
+class Api::V1::ETransportationsController < Api::V1::BaseController
+  before_action :set_resource_class
   before_action :set_e_transportation, only: %i[ show update destroy ]
 
   # GET /api/v1/e_e_transportations
   def index
-    @e_transportations = ETransportation.all
+    @pagy, @e_transportations = pagy(@resource_class.all)
+  end
+
+  def outside_power_report
+    render json: EScooter.outside_power_report
   end
 
   # GET /api/v1/e_e_transportations/1
@@ -12,12 +17,12 @@ class Api::V1::ETransportationsController < ApplicationController
 
   # POST /api/v1/e_e_transportations
   def create
-    @e_transportation = ETransportation.new(e_transportation_params)
+    @e_transportation = @resource_class.new(e_transportation_params)
 
     if @e_transportation.save
       render :show, status: :created
     else
-      render json: @e_transportation.errors, status: :unprocessable_entity
+      render_error(@e_transportation, status: :unprocessable_entity)
     end
   end
 
@@ -26,7 +31,7 @@ class Api::V1::ETransportationsController < ApplicationController
     if @e_transportation.update(e_transportation_params)
       render :show, status: :ok
     else
-      render json: @e_transportation.errors, status: :unprocessable_entity
+      render_error(@e_transportation, status: :unprocessable_entity)
     end
   end
 
@@ -36,13 +41,23 @@ class Api::V1::ETransportationsController < ApplicationController
   end
 
   private
+    def set_resource_class
+      @resource_class = case params[:type]
+      when "EBike"
+        EBike
+      when "EScooter"
+        EScooter
+      else
+        ETransportation
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_e_transportation
-      @e_transportation = ETransportation.find(params[:id])
+      @e_transportation = find_resource(@resource_class, params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def e_transportation_params
-      params.require(:e_transportation).permit(:e_e_transportation_type, :sensor_type, :owner_id, :in_zone, :lost_sensor)
+      params.require(:e_transportation).permit(:sensor_type, :owner_id, :in_zone, :lost_sensor)
     end
 end

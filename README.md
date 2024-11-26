@@ -13,22 +13,30 @@
 * step 3: Run migration:
 ```bundle exec rails db:migrate```
 
-* step 4: Start the application:
+* step 4: Create ENV
+```change config/application.yml.sample to config/application.yml```
+
+* step 5: Create sample data
+```bundle exec rails db:seed```
+
+* step 6: Start the application:
 ```bundle exec rails s```
 
 ## Run unit test
 ```bundle exec rspec```
 
+## Run rubocop
+```bundle exec rubocop```
 
 ## Access API document
 * step 1: start the application:
-```bundle exec rails s -p 3010```
-* step 2: visit: http://localhost:3010/
-
-## Screen record of the demo:
+```bundle exec rails s -p 3000```
+* step 2: visit: http://localhost:3000/api-docs
 
 ## Generate API documentation
-```rails rswag:specs:swaggerize```
+```bundle exec rails rswag:specs:swaggerize```
+
+## Screen record of the demo:
 
 ## Additional information of gem list that I added
 * 1: `active_model_serializers`: To customize json response for frontend

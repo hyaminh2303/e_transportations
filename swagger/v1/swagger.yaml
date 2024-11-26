@@ -4,22 +4,51 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/e_transportations/outside_power_report":
+    get:
+      summary: Report of e-Transportations outside power
+      tags:
+      - ETransportations
+      responses:
+        '200':
+          description: report found
   "/api/v1/e_transportations":
     get:
       summary: List all e-Transportations
       tags:
       - ETransportations
+      parameters:
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - EBike
+          - EScooter
+        required: false
+        description: Type of transportation
       responses:
         '200':
-          description: e_transportations found
+          description: e_scooters found
     post:
       summary: Create a e-Transportation
       tags:
       - ETransportations
-      parameters: []
+      parameters:
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - EBike
+          - EScooter
+        required: true
+        description: Type of transportation
       responses:
         '201':
-          description: e_transportation created
+          description: e_scooter created
+        '422':
+          description: invalid request
       requestBody:
         content:
           application/json:
@@ -30,12 +59,13 @@ paths:
                   type: integer
                 sensor_type:
                   type: string
+                lost_sensor:
+                  type: boolean
                 in_zone:
                   type: boolean
               required:
               - owner_id
               - sensor_type
-              - in_zone
   "/api/v1/e_transportations/{id}":
     get:
       summary: Show a e-Transportation
@@ -47,9 +77,20 @@ paths:
         required: true
         schema:
           type: string
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - EBike
+          - EScooter
+        required: false
+        description: Type of transportation
       responses:
         '200':
           description: e_transportation found
+        '404':
+          description: e_transportation not found
     put:
       summary: Update a e-Transportation
       tags:
@@ -60,9 +101,20 @@ paths:
         required: true
         schema:
           type: string
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - EBike
+          - EScooter
+        required: false
+        description: Type of transportation
       responses:
         '200':
-          description: e_transportation updated
+          description: e_scooter updated
+        '422':
+          description: invalid request
       requestBody:
         content:
           application/json:
@@ -73,12 +125,13 @@ paths:
                   type: integer
                 sensor_type:
                   type: string
+                lost_sensor:
+                  type: boolean
                 in_zone:
                   type: boolean
               required:
               - owner_id
               - sensor_type
-              - in_zone
     delete:
       summary: Delete a e-Transportation
       tags:
@@ -89,9 +142,20 @@ paths:
         required: true
         schema:
           type: string
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - EBike
+          - EScooter
+        required: false
+        description: Type of transportation
       responses:
         '204':
           description: e_transportation deleted
+        '404':
+          description: e_transportation not found
 servers:
 - url: http://localhost:3000
   variables:

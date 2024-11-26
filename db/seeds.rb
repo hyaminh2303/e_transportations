@@ -8,5 +8,34 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-owner = Owner.create!(name: "John Doe")
-e_transportation = ETransportation.create!(in_zone: true, owner: owner)
+owner_names = [
+  "John Doe",
+  "Jane Doe",
+  "Alice",
+  "Bob",
+  "Charlie",
+]
+
+owner_names.each do |owner_name|
+  Owner.find_or_create_by!(name: owner_name)
+end
+
+owner_ids = Owner.pluck(:id)
+
+10.times do
+  EBike.create!(
+    owner_id: owner_ids.sample,
+    sensor_type: EBike.sensor_types.keys.sample,
+    in_zone: [true, false].sample,
+    lost_sensor: [true, false].sample,
+  )
+end
+
+10.times do
+  EScooter.create!(
+    owner_id: owner_ids.sample,
+    sensor_type: EScooter.sensor_types.keys.sample,
+    in_zone: [true, false].sample,
+    lost_sensor: [true, false].sample,
+  )
+end
