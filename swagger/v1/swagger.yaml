@@ -59,6 +59,10 @@ paths:
                   type: integer
                 sensor_type:
                   type: string
+                  enum:
+                  - small
+                  - medium
+                  - large
                 lost_sensor:
                   type: boolean
                 in_zone:

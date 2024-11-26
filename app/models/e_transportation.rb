@@ -1,5 +1,5 @@
 class ETransportation < ApplicationRecord
-  belongs_to :owner
+  belongs_to :owner, optional: true
 
   validates :sensor_type, :type, presence: true
 
@@ -44,13 +44,9 @@ end
 #  type        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  owner_id    :integer          not null
+#  owner_id    :integer
 #
 # Indexes
 #
 #  index_e_transportations_on_owner_id  (owner_id)
-#
-# Foreign Keys
-#
-#  owner_id  (owner_id => owners.id)
 #

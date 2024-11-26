@@ -58,6 +58,12 @@ class Api::V1::ETransportationsController < Api::V1::BaseController
 
     # Only allow a list of trusted parameters through.
     def e_transportation_params
-      params.require(:e_transportation).permit(:sensor_type, :owner_id, :in_zone, :lost_sensor)
+      whitelist = [ :sensor_type, :owner_id, :in_zone ]
+
+      if params[:type] == "EScooter"
+        whitelist << :lost_sensor
+      end
+
+      params.require(:e_transportation).permit(whitelist)
     end
 end

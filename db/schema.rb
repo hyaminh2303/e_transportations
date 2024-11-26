@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_095606) do
   create_table "e_transportations", force: :cascade do |t|
     t.string "type"
     t.string "sensor_type"
-    t.integer "owner_id", null: false
+    t.integer "owner_id"
     t.boolean "in_zone", default: false, null: false
     t.boolean "lost_sensor", default: false, null: false
     t.datetime "created_at", null: false
@@ -27,6 +27,4 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_095606) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_foreign_key "e_transportations", "owners"
 end

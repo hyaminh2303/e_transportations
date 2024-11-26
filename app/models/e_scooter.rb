@@ -2,7 +2,7 @@ class EScooter < ETransportation
   enum :sensor_type, {
     small: "small",
     big: "big"
-  }, prefix: true
+  }, prefix: true, validate: true
 end
 
 # == Schema Information
@@ -16,13 +16,9 @@ end
 #  type        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  owner_id    :integer          not null
+#  owner_id    :integer
 #
 # Indexes
 #
 #  index_e_transportations_on_owner_id  (owner_id)
-#
-# Foreign Keys
-#
-#  owner_id  (owner_id => owners.id)
 #

@@ -95,7 +95,7 @@ RSpec.describe "/api/v1/e_transportations", type: :request do
         type: :object,
         properties: {
           owner_id: { type: :integer },
-          sensor_type: { type: :string },
+          sensor_type: { type: :string, enum: [ 'small', 'medium', 'large' ] },
           lost_sensor: { type: :boolean },
           in_zone: { type: :boolean }
         },
@@ -104,7 +104,7 @@ RSpec.describe "/api/v1/e_transportations", type: :request do
 
       response '201', 'e_bike created' do
         let(:type) { 'EBike' }
-        let(:e_transportation) { { owner_id: create_owner.id, sensor_type: "small", in_zone: true, lost_sensor: false } }
+        let(:e_transportation) { { owner_id: create_owner.id, sensor_type: "small", in_zone: true } }
 
         run_test! do |response|
           data = JSON.parse(response.body)['e_transportation']
@@ -134,12 +134,12 @@ RSpec.describe "/api/v1/e_transportations", type: :request do
 
       response '422', 'invalid request' do
         let(:type) { 'EBike' }
-        let(:e_transportation) { { owner_id: nil, sensor_type: nil, in_zone: nil } }
+        let(:e_transportation) { { owner_id: nil, sensor_type: 'no_data', in_zone: nil } }
 
         run_test! do |response|
           data = JSON.parse(response.body)
           expect(response.status).to eq(422)
-          expect(data['fields']['owner']).to eq([ "must exist" ])
+          expect(data['fields']['sensor_type']).to eq([ "is not included in the list" ])
         end
       end
     end
@@ -223,12 +223,12 @@ RSpec.describe "/api/v1/e_transportations", type: :request do
       response '422', 'invalid request' do
         let(:id) { create_e_bike.id }
         let(:type) { 'EBike' }
-        let(:e_transportation) { { owner_id: nil, sensor_type: nil, in_zone: nil } }
+        let(:e_transportation) { { owner_id: nil, sensor_type: "test", in_zone: nil } }
 
         run_test! do |response|
           data = JSON.parse(response.body)
           expect(response.status).to eq(422)
-          expect(data['fields']['owner']).to eq([ "must exist" ])
+          expect(data['fields']['sensor_type']).to eq([ "is not included in the list" ])
         end
       end
     end
