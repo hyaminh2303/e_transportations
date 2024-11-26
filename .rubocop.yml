@@ -6,3 +6,44 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'config/initializers/**/*'
+    - 'db/**/*'
+    - 'lib/templates/**/*'
+    - 'log/**/*'
+    - 'test/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+
+# Rails-specific configuration
+Rails:
+  Enabled: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 350
+
+Metrics/BlockLength:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 50
