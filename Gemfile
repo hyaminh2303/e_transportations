@@ -38,6 +38,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "rswag"
+  gem "rspec-rails"
 end
 
-
+gem "active_model_serializers"
