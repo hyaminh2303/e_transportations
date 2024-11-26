@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version: 3.3.5
 
-Things you may want to cover:
+* Install and run the app
+step 1: Install gems
+```bundle install```
 
-* Ruby version
+step 2: Create database
+```bundle exec rails db:create```
 
-* System dependencies
+step 3: Run migration
+```bundle exec rails db:migrate```
 
-* Configuration
+step 4: Start the application
+```bundle exec rails s```
 
-* Database creation
+* Run unit test
+```bundle exec rspec```
 
-* Database initialization
 
-* How to run the test suite
+* Test application by using browser *
+step 1: start the application
+```bundle exec rails s -p 3010```
 
-* Services (job queues, cache servers, search engines, etc.)
+step 2: visit http://localhost:3010/
 
-* Deployment instructions
+* Screen record of the demo:
 
-* ...
+* Additional information of gem list that i added
+1: active_model_serializers: To customize json response for frontend
+2: rspec-rails: For writing unit test
+3: rswag: for creating API document
+4: rubocop: for checking coding style and convention (useful for development)
+5: annotate: for generating database attribute in the model (useful for development)
+6: rails-erd: for creating database diagam (useful for development)
+7: pagy: for pagination

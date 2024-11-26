@@ -54,3 +54,4 @@ group :development, :test do
 end
 
 gem "active_model_serializers"
+gem 'pagy', '~> 9.3', '>= 9.3.1'
