@@ -50,7 +50,11 @@ group :development, :test do
 
   gem "rswag"
   gem "rspec-rails"
+  gem "factory_bot"
+  gem "faker"
+
   gem "pry-rails"
 end
 
-gem 'pagy', '~> 9.3', '>= 9.3.1'
+gem "figaro"
+gem "pagy", "~> 9.3", ">= 9.3.1"

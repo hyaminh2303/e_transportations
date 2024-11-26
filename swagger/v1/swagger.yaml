@@ -1,0 +1,99 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/e_transportations":
+    get:
+      summary: List all e-Transportations
+      tags:
+      - ETransportations
+      responses:
+        '200':
+          description: e_transportations found
+    post:
+      summary: Create a e-Transportation
+      tags:
+      - ETransportations
+      parameters: []
+      responses:
+        '201':
+          description: e_transportation created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                owner_id:
+                  type: integer
+                sensor_type:
+                  type: string
+                in_zone:
+                  type: boolean
+              required:
+              - owner_id
+              - sensor_type
+              - in_zone
+  "/api/v1/e_transportations/{id}":
+    get:
+      summary: Show a e-Transportation
+      tags:
+      - ETransportations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: e_transportation found
+    put:
+      summary: Update a e-Transportation
+      tags:
+      - ETransportations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: e_transportation updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                owner_id:
+                  type: integer
+                sensor_type:
+                  type: string
+                in_zone:
+                  type: boolean
+              required:
+              - owner_id
+              - sensor_type
+              - in_zone
+    delete:
+      summary: Delete a e-Transportation
+      tags:
+      - ETransportations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: e_transportation deleted
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: www.example.com

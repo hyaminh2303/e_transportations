@@ -27,6 +27,9 @@
 
 ## Screen record of the demo:
 
+## Generate API documentation
+```rails rswag:specs:swaggerize```
+
 ## Additional information of gem list that I added
 * 1: `active_model_serializers`: To customize json response for frontend
 * 2: `rspec-rails`: For writing unit test
