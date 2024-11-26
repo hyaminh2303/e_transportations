@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_092535) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_095606) do
+  create_table "e_transportations", force: :cascade do |t|
+    t.string "e_transportation_type"
+    t.string "sensor_type"
+    t.integer "owner_id", null: false
+    t.boolean "in_zone"
+    t.boolean "lost_sensor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_e_transportations_on_owner_id"
+  end
+
   create_table "owners", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "e_transportations", "owners"
 end
