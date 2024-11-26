@@ -294,6 +294,8 @@ GEM
       sorbet-runtime (>= 0.5.10782)
     ruby-progressbar (1.13.0)
     securerandom (0.3.2)
+    shoulda-matchers (6.4.0)
+      activesupport (>= 5.2.0)
     sorbet-runtime (0.5.11668)
     sqlite3 (2.3.1-aarch64-linux-gnu)
     sqlite3 (2.3.1-aarch64-linux-musl)
@@ -354,6 +356,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   rubocop-rspec
   ruby-lsp
+  shoulda-matchers
   sqlite3 (>= 1.4)
   tzinfo-data
 
