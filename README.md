@@ -37,6 +37,7 @@
 ```bundle exec rails rswag:specs:swaggerize```
 
 ## Screen record of the demo:
+[https://www.loom.com/share/4b1884eba8ab466cb22f016d9a49935e](https://www.loom.com/share/4b1884eba8ab466cb22f016d9a49935e)
 
 ## Additional information of gem list that I added
 * 1: `active_model_serializers`: To customize json response for frontend
